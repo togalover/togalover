@@ -1,24 +1,36 @@
-```python
-from flask import Flask, request
+```
+# import necessary libraries
+import random
 
-app = Flask(__name__)
+# define function to generate responses
+def generate_response(user_input):
+    # possible responses
+    bot_responses = [
+        "Hello! How can I assist you today?",
+        "Nice to hear from you! How may I help you?",
+        "Good day! What can I do for you?",
+        "Hi there! What do you need help with?",
+        "Greetings! How can I be of service to you?"
+    ]
+    # return a random response
+    return random.choice(bot_responses)
 
-@app.route('/', methods=['POST'])
-def bot():
-    # Get user's message
-    message = request.form['message']
+# start conversation with user
+print("Hello! I am a friendly AI bot. How can I assist you today?")
 
-    # Define bot's response
-    if 'hi' in message.lower() or 'hello' in message.lower():
-        response = "Hi there! How can I help you today?"
-    elif 'thanks' in message.lower() or 'thank you' in message.lower():
-        response = "You're welcome! Anything else you need help with?"
-    else:
-        response = "I'm sorry, I didn't understand what you said. Could you please rephrase that?"
+# loop through conversation
+while True:
+    # get user input
+    user_input = input().lower()
 
-    # Return bot's response
-    return response
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    # exit loop if user says goodbye
+    if user_input == "goodbye":
+        print("Goodbye! Have a nice day.")
+        break
+    
+    # generate response
+    bot_response = generate_response(user_input)
+    
+    # print response
+    print(bot_response)
 ```
