@@ -1,12 +1,24 @@
-- 👋 Hi, I’m @togalover
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+```python
+from flask import Flask, request
 
-<!---
-togalover/togalover is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+app = Flask(__name__)
+
+@app.route('/', methods=['POST'])
+def bot():
+    # Get user's message
+    message = request.form['message']
+
+    # Define bot's response
+    if 'hi' in message.lower() or 'hello' in message.lower():
+        response = "Hi there! How can I help you today?"
+    elif 'thanks' in message.lower() or 'thank you' in message.lower():
+        response = "You're welcome! Anything else you need help with?"
+    else:
+        response = "I'm sorry, I didn't understand what you said. Could you please rephrase that?"
+
+    # Return bot's response
+    return response
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
